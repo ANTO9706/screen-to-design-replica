@@ -27,11 +27,12 @@ function MeetingsPage() {
   const g = useGenerate();
 
   async function onFile(file?: File) {
-    if (!file) return;
-    if (!/\.(txt|md|vtt|srt|csv)$/i.test(file.name)) return toast.error("Please upload a .txt, .md, .vtt, .srt or .csv file.");
+    if (!file) return undefined;
+    if (!/\.(txt|md|vtt|srt|csv)$/i.test(file.name)) { toast.error("Please upload a .txt, .md, .vtt, .srt or .csv file."); return undefined; }
     const text = await file.text();
     if (text.length > MAX_INPUT) toast.warning(`File trimmed to ${MAX_INPUT.toLocaleString()} characters.`);
     setNotes(text.slice(0, MAX_INPUT));
+    return undefined;
   }
 
   return (
