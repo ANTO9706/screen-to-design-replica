@@ -1,29 +1,20 @@
-# Welcome to your Lovable project
+# Desk Mate — AI Productivity Dashboard
 
-This project was built with [Lovable](https://lovable.dev).
+Three AI tools in one dashboard: Smart Email Generator (`/email`), Meeting Notes Summarizer (`/meetings`), AI Research Assistant (`/research`), plus Home and Help & Responsible AI pages.
 
-## Build with Lovable
-
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
+## Install & run
+```
+bun install
+bun run dev
 ```
 
-## Built with
+## Configuration
+AI calls run server-side in `src/routes/api/generate.ts` → `src/lib/ai.server.ts` via Lovable AI Gateway.
+The key `LOVABLE_API_KEY` is read only on the server (never exposed to the browser).
+Prompts and input validation live in `src/lib/prompts.ts`.
 
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
+## Testing
+`bunx vitest run`. Manual: POST `/api/generate` with `{"tool":"meeting","notes":"..."}`.
+
+## Deploy
+Click Publish in Lovable.
